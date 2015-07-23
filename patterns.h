@@ -87,7 +87,7 @@ struct NODE
  * Simple error reporting.
  */
 #define PATTERN_ERROR_BUFSIZE 8192
-extern char global_pattern_error[PATTERN_ERROR_BUFSIZE];
+extern char global_pattern_error[PATTERN_ERROR_BUFSIZE+1];
 extern pattern *pattern_too_large;
 
 /*

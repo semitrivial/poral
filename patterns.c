@@ -31,7 +31,7 @@
 #include "por.h"
 #include "core.h"
 
-char global_pattern_error[PATTERN_ERROR_BUFSIZE];
+char global_pattern_error[PATTERN_ERROR_BUFSIZE+1];
 
 /*
  * Create a pattern with specified number of nodes.
