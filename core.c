@@ -250,7 +250,7 @@ amal_over *amalgamate_over_Q( pattern *P1, pattern *P2, node *Q, int depth )
      * that the smaller of the two is Q itself.  Output the bigger of the two.
      * (But don't just output it.  Also output embeddings of both patterns into it.)
      */
-    if ( global_showwork ) sprintf( rec->txt + strlen(rec->txt), " (Base Case)" );
+    if ( global_showwork ) strcat( rec->txt, " (Base Case)" );
 
     /*
      * Create the data structure to hold the stuff we're going to output
@@ -345,7 +345,7 @@ amal_over *amalgamate_over_Q( pattern *P1, pattern *P2, node *Q, int depth )
        */
       mapping *m1, *m2;
 
-      if ( global_showwork ) sprintf( rec->txt + strlen(rec->txt), " (Case 1 Subcase 1)" );
+      if ( global_showwork ) strcat( rec->txt, " (Case 1 Subcase 1)" );
       /*
        * We invoke Lemma 7.11 of Carlson2001
        */
@@ -386,11 +386,11 @@ amal_over *amalgamate_over_Q( pattern *P1, pattern *P2, node *Q, int depth )
        */
       if ( b1bar->position > b2bar->position )
       {
-        if ( global_showwork ) sprintf( rec->txt + strlen(rec->txt), " (Case 1 Subcase 2, but b1bar > b2bar so swap)" );
+        if ( global_showwork ) strcat( rec->txt, " (Case 1 Subcase 2, but b1bar > b2bar so swap)" );
         goto swap_patterns;
       }
       else
-        if ( global_showwork ) sprintf( rec->txt + strlen(rec->txt), " (Case 1 Subcase 2)" );
+        if ( global_showwork ) strcat( rec->txt, " (Case 1 Subcase 2)" );
 
       m = lemma711( P2, Pbar->p, Pbar->map2 );
       P_mid = amalgamate_over_Q( P1, m->Ptilde, P1bar->last_node, depth+1 );
@@ -431,7 +431,7 @@ amal_over *amalgamate_over_Q( pattern *P1, pattern *P2, node *Q, int depth )
        */
       if ( !a1->decomposition )
       {
-        if ( global_showwork ) sprintf( rec->txt + strlen(rec->txt), " (Case 2 Subcase 1, but a1 indecomposable so swap)" );
+        if ( global_showwork ) strcat( rec->txt, " (Case 2 Subcase 1, but a1 indecomposable so swap)" );
         goto swap_patterns;
       }
 
@@ -447,7 +447,7 @@ amal_over *amalgamate_over_Q( pattern *P1, pattern *P2, node *Q, int depth )
        */
       if ( a2->decomposition && same_decompositions( a1->decomposition, a2->decomposition ) )
       {
-        if ( global_showwork ) sprintf( rec->txt + strlen(rec->txt), " (Case 2 Subcase 1, a1 and a2 have same decompositions)" );
+        if ( global_showwork ) strcat( rec->txt, " (Case 2 Subcase 1, a1 and a2 have same decompositions)" );
         CREATE( P_amal, amal_over, 1 );
         P_amal->created = "Same decompositions";
         P_amal->swaps = 0;
@@ -478,7 +478,7 @@ amal_over *amalgamate_over_Q( pattern *P1, pattern *P2, node *Q, int depth )
         pattern *Pnew;
         node *newnode;
 
-        if ( global_showwork ) sprintf( rec->txt + strlen(rec->txt), " (Case 2 Subcase 1, a1 and a2 have different decompositions)" );
+        if ( global_showwork ) strcat( rec->txt, " (Case 2 Subcase 1, a1 and a2 have different decompositions)" );
         Pnew = additively_extend_specialcase( P2, a1->decomposition, &newnode );
         CREATE( P_amal, amal_over, 1 );
         P_amal->created = "Additive Extension";
@@ -544,7 +544,7 @@ amal_over *amalgamate_over_Q( pattern *P1, pattern *P2, node *Q, int depth )
        */
       if ( b1bar == b2bar )
       {
-        if ( global_showwork ) sprintf( rec->txt + strlen(rec->txt), " (Case 2 Subcase 2, b1=b2)" );
+        if ( global_showwork ) strcat( rec->txt, " (Case 2 Subcase 2, b1=b2)" );
         P_mid->over = Q;
 
         return P_mid;
@@ -560,11 +560,11 @@ amal_over *amalgamate_over_Q( pattern *P1, pattern *P2, node *Q, int depth )
        */
       if ( b1bar->position > b2bar->position )
       {
-        if ( global_showwork ) sprintf( rec->txt + strlen(rec->txt), " (Case 2 Subcase 2, but b1 > b2 so swap)" );
+        if ( global_showwork ) strcat( rec->txt, " (Case 2 Subcase 2, but b1 > b2 so swap)" );
         goto swap_patterns;
       }
       else
-        if ( global_showwork ) sprintf( rec->txt + strlen(rec->txt), " (Case 2 Subcase 2, b1 < b2)" );
+        if ( global_showwork ) strcat( rec->txt, " (Case 2 Subcase 2, b1 < b2)" );
 
       /*
        * Since the P2-circle ends later, it follows that it generates the P1-circle, that is,
