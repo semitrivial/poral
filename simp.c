@@ -30,10 +30,10 @@
 /*
  * Local function prototypes
  */
-pattern *simplify_recurse( pattern *p, node *start );
-pattern *remove_end_clumps( pattern *p );
-int mark_for_removal( pattern *p, node *x, node *start );
-pattern *execute_removal(pattern *p);
+static pattern *simplify_recurse( pattern *p, node *start );
+static pattern *remove_end_clumps( pattern *p );
+static int mark_for_removal( pattern *p, node *x, node *start );
+static pattern *execute_removal(pattern *p);
 
 /*
  * Local definitions
@@ -75,7 +75,7 @@ pattern *simplify( pattern *p )
  * all those nodes as well, which in turn requires asking the same
  * question about any node THEY'RE connected to, and so on.
  */
-pattern *simplify_recurse( pattern *p, node *start )
+static pattern *simplify_recurse( pattern *p, node *start )
 {
   node *n;
   pattern *q;
@@ -149,7 +149,7 @@ pattern *simplify_recurse( pattern *p, node *start )
  * were originally wanting to remove (before getting lost in the
  * mazes of recursion).
  */
-int mark_for_removal( pattern *p, node *x, node *start )
+static int mark_for_removal( pattern *p, node *x, node *start )
 {
   node *n, **d, *L;
 
@@ -288,7 +288,7 @@ int mark_for_removal( pattern *p, node *x, node *start )
  * means that doing so did not force us to mark p->point), make a copy of
  * the pattern, and remove the marked points from it.
  */
-pattern *execute_removal(pattern *p)
+static pattern *execute_removal(pattern *p)
 {
   node *n, *m, *m_next;
   pattern *q;
@@ -329,7 +329,7 @@ pattern *execute_removal(pattern *p)
  *
  * Undefined behavior if p is the pattern with only one node.
  */
-pattern *remove_end_clumps( pattern *p )
+static pattern *remove_end_clumps( pattern *p )
 {
   node *n, *n_next;
   pattern *q;
